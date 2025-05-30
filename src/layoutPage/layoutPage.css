@@ -1,0 +1,9 @@
+.main-container {
+    min-height: 85vh;
+    margin: 25px;
+}
+
+.layout-h2 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
