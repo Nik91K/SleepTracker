@@ -45,11 +45,6 @@ const LoginPage = () => {
             return
         }
 
-        if (!/[A-Z]/.test(password)) {
-            setError({type:"error", message:'Пароль має мати мінімум одну велику літеру'})
-            return
-        }
-
         if (!/[a-z]/.test(password)) {
             setError({type:"error", message:'Пароль має мати маленьку літери'})
             return
