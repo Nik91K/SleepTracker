@@ -3,15 +3,18 @@ import LayoutPage from '../../../layoutPage/layoutPage'
 import Input from '../../../components/common/Inputs/Text'
 import Tooltip from '../../../components/common/Tooltip'
 import { getFormInputValueByName } from '../../../utils/getInput'
-import { useNavigate } from 'react-router'
+import { data, useNavigate } from 'react-router'
 import React from 'react'
 import SubmitButton from '../../../components/common/Buttons/SubmitButton'
+import { useAppDispatch } from '../../../api/hooks'
+import { loginUser } from '../../../api/slices/authSlice'
 
 const LoginPage = () => {
     const [tooltip, setError] = React.useState<{ type: 'success' | 'error'; message: string } | null>(null)
     const send = useNavigate()
 
-    const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+    const dispatch = useAppDispatch()
+    const handleSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         let password = getFormInputValueByName(event.currentTarget, 'password')
         let email = getFormInputValueByName(event.currentTarget, 'email')
@@ -61,6 +64,24 @@ const LoginPage = () => {
             setError({type:"error", message:'Пароль не може мати пробілів'})
             return
         }
+
+        try {
+            await dispatch(loginUser({ email, password })).unwrap
+            send('/')
+        } catch(error) {
+            setError
+        }
+
+        dispatch(loginUser({ email, password }))
+        .unwrap()
+        .then((data) => {
+            console.log("Успішно зареєстровано", data)
+            send('/')
+        })
+        .catch((Error) => {
+            setError({type:"error", message:'Помилка реєстрації'})
+            return
+        })
     }
 
     return (

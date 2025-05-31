@@ -6,12 +6,15 @@ import { getFormInputValueByName } from '../../../utils/getInput'
 import { useNavigate } from 'react-router'
 import React from 'react'
 import SubmitButton from '../../../components/common/Buttons/SubmitButton'
+import { registerUser } from '../../../api/slices/authSlice'
+import { useAppDispatch, useAppSelector } from '../../../api/hooks';
 // import validator from 'validator'
 
 const RegisterPage = () => {
     const [tooltip, setError] = React.useState<{ type: 'success' | 'error'; message: string } | null>(null)
     const send = useNavigate()
-    
+    const dispatch = useAppDispatch();
+
     const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         let name = getFormInputValueByName(event.currentTarget, "name")
@@ -100,13 +103,22 @@ const RegisterPage = () => {
             return
         }
 
+        dispatch(registerUser({ email, password, name}))
+            .unwrap()
+        .then((data) => {
+          console.log("Успішно зареєстровано", data)
+          send('/transactions')
+        })
+        .catch((error) => {
+          setError({type:"error", message:"Помилка реєстації"})
+        })
     }
     return (
         <LayoutPage title='Register'>
             <form className='form' onSubmit={handleSubmit}>
                 <Input type='text' name='name' title='Ім`я'/>
-                <Input type='password' name='password' title='Пароль'/>
                 <Input type='email' name='email' title='Емаіл'/>
+                <Input type='password' name='password' title='Пароль'/>
                 <SubmitButton type='submit' text='Зареєструватися' />
             </form>
             {tooltip && (
