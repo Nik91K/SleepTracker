@@ -1,5 +1,6 @@
 import './styles.css';
 import LayoutPage from '../../layoutPage/layoutPage';
+import Sitebar from '../../components/Layout/Sitebar/Sitebar';
 
 const MainPage = () => {
     return (
