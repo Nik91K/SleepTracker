@@ -2,7 +2,7 @@ import './layoutPage.css';
 import Header from '../components/Layout/Header/Header'
 import Footer from '../components/Layout/Footer/Footer'
 
-const LayoutPage = ({title, children} : {title:string, children:React.ReactNode}) => {
+const LayoutPage = ({title, children} : {title?:string, children:React.ReactNode}) => {
     return (
         <div>
             <Header />
