@@ -1,38 +1,49 @@
 html{
-    box-sizing: border-box;
+box-sizing: border-box;
 }
 
 *,
 *::after,
 *::before{
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-    list-style: none;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  list-style: none;
+  text-decoration: none;
 }
 
 :root{
-    background: #232323;
-    color: #ffffff;
+  --background-color: #232323;
+  --primary-text-color: #ffffff;
+  --link-color: rgb(195, 195, 195);
+  --link-hover-color: #ffffff;
+  --link-hover-border: 1px solid #ffffff;
+}
+
+[data-theme="light"]{
+  --background-color: #ffffff;
+  --primary-text-color: #181818;
+  --link-color: rgb(40, 40, 40);  
+  --link-hover-color: #000000;
+  --link-hover-border: 1px solid #000000;
 }
 
 .form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .link{
-  color: rgb(195, 195, 195);
+  color: var(--link-color);
   transition: 0.5s ease;
 }
 
 .link:hover{
-  color: #fff;
-  border-bottom: 1px solid #fff;
+  color: var(--link-hover-color);
+  border-bottom: var(--link-hover-border);
   transition: 0.5s ease;
 }

@@ -12,28 +12,32 @@ const Header: React.FC<HeaderProps> = ({ isLoggedIn }) => {
 
     return (
         <header className="header">
-            {isLoggedIn && (
-                <Sitebar />
-            )}
+
             <div className="header-title">
+                {isLoggedIn && (
+                    <Sitebar />
+                )}
                 <TfiAlarmClock size={35} />
                 <span className="header-title">Sleep tracker</span>
             </div>
             <div className="header-links">
+                {!isLoggedIn && (
                 <a href="/login" className="link header-link">
                     <div>
                         <MdOutlineAppRegistration size={20}/>
                         <span>Вхід</span>
                     </div>
                 </a>
+                )}
+                {!isLoggedIn && (
                 <a href="/register" className="link header-link">
                     <div>
                         <IoLogInOutline size={20}/>
-                        {!isLoggedIn && (
                         <span>Реєстрація</span>
-                        )}
+                        
                     </div>
                 </a>
+                )}
             </div>
         </header>
     )
