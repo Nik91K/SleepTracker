@@ -20,7 +20,7 @@ const SLICE_URL = "auth"
 
 export const registerUser = createAsyncThunk (
     'auth/register',
-    async (userData: { email:string, password:string, name:string }, { rejectWithValue }) => {
+    async (userData: { email:string, password:string, name:string, theme:string }, { rejectWithValue }) => {
         try {
             const response:any = await axios.post(`/${SLICE_URL}/register`, userData)
             localStorage.setItem('token', response.data.access_token)
