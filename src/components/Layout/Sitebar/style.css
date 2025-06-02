@@ -27,6 +27,7 @@ nav {
     height: 50px;
     width: 40px;
     position: relative;
+    cursor: pointer;
 }
 .ham-menu span {
     height: 5px;
