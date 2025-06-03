@@ -3,7 +3,7 @@ import LayoutPage from '../../../layoutPage/layoutPage'
 import Input from '../../../components/common/Inputs/Text'
 import Tooltip from '../../../components/common/Tooltip'
 import { getFormInputValueByName } from '../../../utils/getInput'
-import { data, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 import React from 'react'
 import SubmitButton from '../../../components/common/Buttons/SubmitButton'
 import { useAppDispatch } from '../../../api/hooks'
@@ -69,9 +69,8 @@ const LoginPage = () => {
 
         dispatch(loginUser({ email, password }))
         .unwrap()
-        .then((data) => {
-            console.log("Успішно зареєстровано", data)
-            send('/')
+        .then(() => {
+            send('/sleeptracker')
         })
         .catch((Error) => {
             setError({type:"error", message:'Помилка реєстрації'})
@@ -86,7 +85,8 @@ const LoginPage = () => {
                 <Input type='password' name='password' title='Password' />
                 <p>Немає облікового запису? <a href="/register" className='link'>Зареєструйтесь!</a></p>
                 <SubmitButton type='submit' text='Надіслати' />
-            </form>            {tooltip && (
+            </form>            
+            {tooltip && (
               <Tooltip type={tooltip.type} typeText={tooltip.message} close={() => setError(null)}/>
             )}
         </LayoutPage>
