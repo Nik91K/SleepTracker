@@ -1,3 +1,8 @@
+.layout-page {
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+}
+
 .main-container {
     min-height: 85vh;
     margin: 25px;
