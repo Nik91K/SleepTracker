@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router'
 import React from 'react'
 import SubmitButton from '../../../components/common/Buttons/SubmitButton'
 import { registerUser } from '../../../api/slices/authSlice'
-import { useAppDispatch, useAppSelector } from '../../../api/hooks';
-// import validator from 'validator'
+import { useAppDispatch } from '../../../api/hooks';
+import ThemeButton from '../../../components/common/Buttons/Theme/index'
 
 const RegisterPage = () => {
     const [tooltip, setError] = React.useState<{ type: 'success' | 'error'; message: string } | null>(null)
@@ -20,6 +20,7 @@ const RegisterPage = () => {
         let name = getFormInputValueByName(event.currentTarget, "name")
         let email = getFormInputValueByName(event.currentTarget, "email")
         let password = getFormInputValueByName(event.currentTarget, "password")
+        let theme = localStorage.getItem('theme') || 'Dark'
         const checkEmail = /^[^@]+@[^@]+\.[^@]+$/
 
         if (!email || !password || !name) {
@@ -74,10 +75,6 @@ const RegisterPage = () => {
             return
         }
 
-        // if (!validator.isEmail(email)) {
-        //     setError('Email має неправильний формат')
-        // }
-
         if (password.length < 8) {
             setError({type:"error", message:'Пароль має мати 8 символів'})
             return
@@ -98,11 +95,10 @@ const RegisterPage = () => {
             return
         }
 
-        dispatch(registerUser({ email, password, name}))
+        dispatch(registerUser({ email, password, name, theme}))
             .unwrap()
-        .then((data) => {
-          console.log("Успішно зареєстровано", data)
-          send('/transactions')
+        .then(() => {
+          send('/sleeptracker')
         })
         .catch((error) => {
           setError({type:"error", message:"Помилка реєстації"})
@@ -115,6 +111,7 @@ const RegisterPage = () => {
                 <Input type='email' name='email' title='Емаіл'/>
                 <Input type='password' name='password' title='Пароль'/>
                 <SubmitButton type='submit' text='Зареєструватися' />
+                <input type="checkbox" />
             </form>
             {tooltip && (
               <Tooltip type={tooltip.type} typeText={tooltip.message} close={() => setError(null)}/>
