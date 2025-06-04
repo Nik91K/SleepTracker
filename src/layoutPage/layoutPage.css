@@ -4,8 +4,8 @@
 }
 
 .main-container {
-    min-height: 85vh;
-    margin: 25px;
+    min-height: 100vh;
+    padding: 25px;
 }
 
 .layout-h2 {

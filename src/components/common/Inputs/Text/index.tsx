@@ -1,6 +1,6 @@
 import './style.css'
 
-const Input = ({type, name, minLength, maxLength, id, title, value} : {type:string, name?:string, minLength?:number, maxLength?:number, id?: string, title: string, value?: string,}) => {
+const Input = ({type, name, minLength, maxLength, id, title, value, pattern} : {type:string, name?:string, minLength?:number, maxLength?:number, id?: string, title: string, value?: string, pattern?: string}) => {
     return (
       <div className="input-container">
         <input 
@@ -12,6 +12,7 @@ const Input = ({type, name, minLength, maxLength, id, title, value} : {type:stri
           id={id}
           value={value}
           placeholder=""
+          pattern={pattern}
         />
         <span className="highlight"></span>
         <span className="bar"></span>
