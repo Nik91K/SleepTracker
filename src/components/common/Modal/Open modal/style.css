@@ -1,0 +1,13 @@
+.button-style {
+    position: relative;
+    z-index: 1;
+}
+
+.content-style {
+    position: relative;
+    z-index: 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
