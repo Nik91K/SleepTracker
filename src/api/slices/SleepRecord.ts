@@ -16,11 +16,13 @@ const initialState: SleepRecordState = {
     token: localStorage.getItem('token') || null,
 }
 
+const SLICE_URL = "sleep-record"
+
 export const createSleepRecord = createAsyncThunk (
     'sleep-record',
     async (recordData: { date: string, fellAsleepAt: string, wokeUpAt: string }, { rejectWithValue }) => {
         try {
-            const response:any = await axios.post('/sleep-record', recordData)
+            const response:any = await axios.post(`/${SLICE_URL}`, recordData)
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data)
