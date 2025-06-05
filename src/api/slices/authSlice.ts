@@ -23,7 +23,7 @@ export const registerUser = createAsyncThunk (
     async (userData: { email:string, password:string, name:string, theme:string }, { rejectWithValue }) => {
         try {
             const response:any = await axios.post(`/${SLICE_URL}/register`, userData)
-            localStorage.setItem('token', response.data.access_token)
+            localStorage.setItem('token', response.data.accessToken)
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data)
@@ -36,7 +36,7 @@ export const loginUser = createAsyncThunk (
     async (userData: { email:string, password:string }, { rejectWithValue }) => {
         try {
             const response:any = await axios.post(`/${SLICE_URL}/login`, userData)
-            localStorage.setItem('token', response.data.access_token)
+            localStorage.setItem('token', response.data.accessToken)
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data.message || "Login failed")
