@@ -19,11 +19,23 @@ const initialState: SleepRecordState = {
 const SLICE_URL = "sleep-record"
 
 export const createSleepRecord = createAsyncThunk (
-    'sleep-record',
+    'sleep-record/create',
     async (recordData: { date: string, fellAsleepAt: string, wokeUpAt: string }, { rejectWithValue }) => {
         try {
             const response:any = await axios.post(`/${SLICE_URL}`, recordData)
             return response.data
+        } catch (error: any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+export const showSleepRecord = createAsyncThunk (
+    'sleep-record/show',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`/${SLICE_URL}`)
+            return response.data as SleepRecordType[]
         } catch (error: any) {
             return rejectWithValue(error.response.data)
         }
@@ -45,6 +57,18 @@ const sleepRecordSlice = createSlice({
             state.records.push(action.payload)
         })
         .addCase(createSleepRecord.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload as string
+        })
+        .addCase(showSleepRecord.pending, (state) => {
+            state.loading = true
+            state.error = null
+        })
+        .addCase(showSleepRecord.fulfilled, (state, action) => {
+            state.loading = false
+            state.records = action.payload
+        })
+        .addCase(showSleepRecord.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload as string
         })
