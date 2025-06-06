@@ -61,21 +61,11 @@ const LoginPage = () => {
         }
 
         try {
-            await dispatch(loginUser({ email, password })).unwrap
-            send('/')
-        } catch(error) {
-            setError
-        }
-
-        dispatch(loginUser({ email, password }))
-        .unwrap()
-        .then(() => {
+            await dispatch(loginUser({ email, password })).unwrap()
             send('/sleeptracker')
-        })
-        .catch((Error) => {
-            setError({type:"error", message:'Помилка реєстрації'})
-            return
-        })
+        } catch(error) {
+            setError({ type: "error", message: 'Помилка логіну' })
+        }
     }
 
     return (
