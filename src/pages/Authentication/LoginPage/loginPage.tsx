@@ -1,6 +1,6 @@
 import './LoginPage.css'
 import LayoutPage from '../../../layoutPage/layoutPage'
-import Input from '../../../components/common/Inputs/Text'
+import Input from '../../../components/common/Input'
 import Tooltip from '../../../components/common/Tooltip'
 import { getFormInputValueByName } from '../../../utils/getInput'
 import { useNavigate } from 'react-router'
