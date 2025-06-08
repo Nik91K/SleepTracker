@@ -4,3 +4,27 @@
     justify-content: space-around;
     cursor: pointer;
 }
+
+.sitebar-about-user{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(26, 24, 24);
+}
+
+.sitebar-user-img{
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+}
+
+.sitebar-user-data{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 15px;
+    font-family: 'Nunito', sans-serif;
+}
