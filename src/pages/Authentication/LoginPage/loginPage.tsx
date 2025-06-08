@@ -12,6 +12,14 @@ import { loginUser } from '../../../api/slices/authSlice'
 const LoginPage = () => {
     const [tooltip, setError] = React.useState<{ type: 'success' | 'error'; message: string } | null>(null)
     const send = useNavigate()
+    const [email, setEmail] = React.useState('')
+    const [password, setPassword] = React.useState('')
+    
+    React.useEffect(() => {
+        const emailStorage = JSON.parse(localStorage.getItem('UserEmail') || '{}')
+        if (emailStorage.email) setEmail(emailStorage.email)
+    }, [])
+
 
     const dispatch = useAppDispatch()
     const handleSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
@@ -71,8 +79,8 @@ const LoginPage = () => {
     return (
         <LayoutPage title='Login'>
             <form className='form' onSubmit={handleSubmit}>
-                <Input type='email' name='email' title='Email Address'/>
-                <Input type='password' name='password' title='Password' />
+                <Input type='email' name='email' title='Email Address' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                <Input type='password' name='password' title='Password'/>
                 <p>Немає облікового запису? <a href="/register" className='link'>Зареєструйтесь!</a></p>
                 <SubmitButton type='submit' text='Надіслати' />
             </form>            

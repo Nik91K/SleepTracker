@@ -98,7 +98,9 @@ const RegisterPage = () => {
         dispatch(registerUser({ email, password, name, theme}))
             .unwrap()
         .then(() => {
-          send('/sleeptracker')
+            localStorage.setItem('UserName',  name);
+            localStorage.setItem('UserEmail', email);
+            send('/sleeptracker')
         })
         .catch((error) => {
           setError({type:"error", message:"Помилка реєстації"})
@@ -110,7 +112,7 @@ const RegisterPage = () => {
                 <Input type='text' name='name' title='Ім`я'/>
                 <Input type='email' name='email' title='Емаіл'/>
                 <Input type='password' name='password' title='Пароль'/>
-                <SubmitButton type='submit' text='Зареєструватися' />
+                <SubmitButton type='submit' text='Зареєструватися'/>
                 <input type="checkbox" />
             </form>
             {tooltip && (
