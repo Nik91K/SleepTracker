@@ -1,12 +1,15 @@
+import LayoutPage from '../../layoutPage/layoutPage'
 import './style.css'
 
 const Settings = () => {
+    console.log("Settings page rendered")
     return (
-        <div className="settings-page">
-            <h1>Налаштування</h1>
-            <p>Ця сторінка знаходиться в розробці.</p>
-            <p>Будь ласка, поверніться пізніше.</p>
-        </div>
+        <LayoutPage>
+            <div className="settings-page">
+                <h1>Налаштування</h1>
+            </div>
+        </LayoutPage>
+
     )
 }
 
