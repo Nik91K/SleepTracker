@@ -1,14 +1,18 @@
-import { Link } from 'react-router';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import SleepRecordForm from '../../common/Forms/SleepRecord';
 import ModalButton from '../../common/Modal/Open modal';
 import BasicPopover from '../../common/Popover';
 import './style.css'
 import { useEffect } from 'react'
 import React from 'react';
+import { MdNightsStay } from "react-icons/md";
+import { IoSettingsSharp } from "react-icons/io5";
 
-const Sitebar = ({children} : {children:React.ReactNode}) => {
+const Sitebar = () => {
     const [name, setName] = React.useState('')
     const [email, setEmail] = React.useState('')
+    const location = useLocation()
+    const showSidebar = location.pathname.startsWith('/sleeptracker')
 
     useEffect(() => {
         const nameStorage = localStorage.getItem('UserName')
@@ -35,38 +39,46 @@ const Sitebar = ({children} : {children:React.ReactNode}) => {
         }
     }, []);
 
-
+    if (!showSidebar) {
+        return <Outlet />
+    }
 
     return (
-        <>
-            <div className="off-screen-menu">
-                <ModalButton buttonName='Додати час'>
-                    <SleepRecordForm />
-                </ModalButton>
-                    <Link to="/sleeptracker"><p>SleepTracker</p></Link>
-                    <Link to="/login"><p>Логін</p></Link>
-                    <Link to="/"><p>Головна</p></Link>
-                <BasicPopover>
-                    <div className="sitebar-about-user">
-                        <div>
-                            <img src="https://placehold.co/48x48" alt="" className='sitebar-user-img' />
+        <div style={{ display: 'flex' }}>
+            {showSidebar && (
+                <>
+                <div className="off-screen-menu">
+                    <Link to="/sleeptracker" className='sitebar-button'><MdNightsStay />SleepTracker</Link>
+                    <Link to="/sleeptracker/settings" className='sitebar-button'><IoSettingsSharp/>Налаштування</Link>
+                    <ModalButton buttonName='Додати час'>
+                        <SleepRecordForm />
+                    </ModalButton>
+                    <BasicPopover>
+                        <div className="sitebar-about-user">
+                            <div>
+                                <img src="https://placehold.co/48x48" alt="" className='sitebar-user-img' />
+                            </div>
+                            <div className='sitebar-user-data'>
+                                <p>{name}</p>
+                                <p>{email}</p>
+                            </div>
                         </div>
-                        <div className='sitebar-user-data'>
-                            <p>{name}</p>
-                            <p>{email}</p>
-                        </div>
-                    </div>
-                </BasicPopover>
-            </div>
-
-            <nav>
-                <div className="ham-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    </BasicPopover>
                 </div>
-            </nav>
-        </>
+
+                <nav className='sitebar-main-button'>
+                    <div className="ham-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </nav>
+                </>
+            )}
+            <div style={{ flex: 1}}>
+                <Outlet />
+            </div>
+        </div>
     )
 }
 

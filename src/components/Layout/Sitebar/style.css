@@ -1,3 +1,7 @@
+.sitebar-main-button{
+    background-color: #232323;
+}
+
 .off-screen-menu {
     padding-top: 100px;
     background-color:  rgb(25, 27, 32);
@@ -54,4 +58,22 @@ nav {
 .ham-menu.active span:nth-child(3) {
     top: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.sitebar-button{
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    width: 200px;
+    padding: 10px;
+    margin: 5px 0;
+    text-decoration: none;
+    transition: 0.3s ease;
+    color: #fff;
+    gap: 5px;
+}
+
+.sitebar-button:hover {
+    transition: 0.3s ease;
+    color: #dbdbdb;
 }
