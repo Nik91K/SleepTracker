@@ -1,0 +1,15 @@
+.greetings{
+    margin-left: 50px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.greetings-username{
+    color: #aaaaaa;
+    font-size: 22px;
+}
+
+.greetings-text{
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 500;
+}
