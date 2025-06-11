@@ -53,26 +53,26 @@ const Sitebar = () => {
                     <ModalButton buttonName='Додати час'>
                         <SleepRecordForm />
                     </ModalButton>
-                    <BasicPopover>
-                        <div className="sitebar-about-user">
-                            <div>
-                                <img src="https://placehold.co/48x48" alt="" className='sitebar-user-img' />
+                    <div className='sitebar-about-user-container'>
+                        <BasicPopover>
+                            <div className="sitebar-about-user">
+                                <div>
+                                    <img src="https://placehold.co/48x48" alt="" className='sitebar-user-img' />
+                                </div>
+                                <div className='sitebar-user-data'>
+                                    <p>{name}</p>
+                                    <p>{email}</p>
+                                </div>
                             </div>
-                            <div className='sitebar-user-data'>
-                                <p>{name}</p>
-                                <p>{email}</p>
-                            </div>
-                        </div>
-                    </BasicPopover>
+                        </BasicPopover>
+                    </div>
                 </div>
 
-                <nav className='sitebar-main-button'>
-                    <div className="ham-menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </nav>
+                <div className="ham-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 </>
             )}
             <div style={{ flex: 1}}>

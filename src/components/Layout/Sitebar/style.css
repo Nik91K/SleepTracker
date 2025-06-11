@@ -3,6 +3,9 @@
 }
 
 .off-screen-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     padding-top: 100px;
     background-color:  rgb(25, 27, 32);
     height: 100vh;
@@ -25,8 +28,10 @@ nav {
 .ham-menu {
     height: 50px;
     width: 40px;
-    position: relative;
+    position: absolute;
     cursor: pointer;
+    top: 20px;
+    left: 20px;
 }
 .ham-menu span {
     height: 5px;
@@ -76,4 +81,42 @@ nav {
 .sitebar-button:hover {
     transition: 0.3s ease;
     color: #dbdbdb;
+}
+
+.sitebar-about-user-container{
+    margin-top: auto;
+}
+
+.sitebar-about-user{
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+
+.sitebar-about-user:hover,
+.sitebar-about-user.active {
+    background-color: rgb(68, 64, 64);
+    transition: 0.3s ease;
+}
+
+.sitebar-user-img{
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+}
+
+.sitebar-user-data{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 15px;
+    font-family: 'Nunito', sans-serif;
+    color: #e6e6e6;
 }
