@@ -20,9 +20,17 @@ const SLICE_URL = "sleep-record"
 
 export const createSleepRecord = createAsyncThunk (
     'sleep-record/create',
-    async (recordData: { date: string, fellAsleepAt: string, wokeUpAt: string }, { rejectWithValue }) => {
+    async (recordData: { date: string, fellAsleepAt: string, wokeUpAt: string }, { rejectWithValue, getState }) => {
         try {
-            const response:any = await axios.post(`/${SLICE_URL}`, recordData)
+            const state:any = getState()
+            const beingData = state.sleepRecord.records as SleepRecordType[]
+            const existingRecord = beingData.find((record: SleepRecordType) => record.date === recordData.date)
+            let response
+            if (existingRecord) {
+                response = await axios.put(`/${SLICE_URL}/${existingRecord.id}`, recordData)
+            } else {
+                response = await axios.post(`/${SLICE_URL}`, recordData)
+            }
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data)
@@ -32,9 +40,11 @@ export const createSleepRecord = createAsyncThunk (
 
 export const showSleepRecord = createAsyncThunk (
     'sleep-record/show',
-    async (_, { rejectWithValue }) => {
+    async ({ startDate, finishDate }: { startDate: string; finishDate: string }, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`/${SLICE_URL}`)
+            const response = await axios.get(`/${SLICE_URL}`, {
+                params: { startDate, finishDate }
+            })
             return response.data as SleepRecordType[]
         } catch (error: any) {
             return rejectWithValue(error.response.data)
