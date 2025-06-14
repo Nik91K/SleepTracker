@@ -15,8 +15,8 @@ const Sitebar = () => {
     const showSidebar = location.pathname.startsWith('/sleeptracker')
 
     useEffect(() => {
-        const nameStorage = localStorage.getItem('UserName')
-        const emailStorage = localStorage.getItem('UserEmail')
+        const nameStorage = localStorage.getItem('UserName') || 'Користувач'
+        const emailStorage = localStorage.getItem('UserEmail') || 'email@example.com'
         if (nameStorage) setName(nameStorage)
         if (emailStorage) setEmail(emailStorage)
     }, [])

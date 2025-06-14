@@ -28,9 +28,9 @@ nav {
 .ham-menu {
     height: 50px;
     width: 40px;
-    position: absolute;
+    position: fixed;
     cursor: pointer;
-    top: 20px;
+    top: 30px;
     left: 20px;
 }
 .ham-menu span {
