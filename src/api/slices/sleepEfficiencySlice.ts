@@ -1,21 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from '../axios';
-
-type DayRecord = {
-  date: string;
-  timeWentToBed: string;
-  timeWokeUp: string;
-  sleepDuration: string;
-  sleepQuality: number;
-}
-
-type WeekSleepEfficiency = {
-  startWeek: string;
-  endWeek: string;
-  sleepDuration: string;
-  sleepQuality: number;
-  days: DayRecord[];
-}
+import type { WeekSleepEfficiency } from '../../types/weekSleepEfficiencyType'
 
 interface SleepEfficiencyState {
     efficiency: WeekSleepEfficiency[]
@@ -33,11 +18,11 @@ const SLICE_URL = "sleep-record/efficiency"
 
 export const showSleepRecordEfficiency = createAsyncThunk (
     'sleep-record/showEfficiency',
-    async ({ startDate, finishDay }: { startDate: string; finishDay: string }, { rejectWithValue }) => {
+    async ({ startDate, endDate }: { startDate: string; endDate: string }, { rejectWithValue }) => {
         try {
             const response = await axios.post(`/${SLICE_URL}`, {
                     startDate,
-                    finishDay
+                    endDate
             })
             return response.data as WeekSleepEfficiency[]
         } catch (error: any) {
