@@ -1,0 +1,38 @@
+.settings-blocks{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 300px;
+}
+
+.settings-blocks-title{
+    margin: 20px 0;
+    color: #e6e6e6;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+}
+
+
+.settings-blocks-item{
+    border-bottom: 1px solid #adadad;
+    color: #adadad;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    margin: 10px 0;
+}
+
+.item-text{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.item-value{
+    width: 100px;
+    height: 50px;
+}
