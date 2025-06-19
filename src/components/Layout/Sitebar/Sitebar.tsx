@@ -6,8 +6,7 @@ import './style.css'
 import { useEffect } from 'react'
 import React from 'react';
 import { MdNightsStay } from "react-icons/md";
-import { IoSettingsSharp } from "react-icons/io5";
-
+import { IoSettingsSharp, IoStatsChart } from "react-icons/io5";
 const Sitebar = () => {
     const [name, setName] = React.useState('')
     const [email, setEmail] = React.useState('')
@@ -47,8 +46,15 @@ const Sitebar = () => {
         <div style={{ display: 'flex' }}>
             {showSidebar && (
                 <>
+                <div className="ham-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
                 <div className="off-screen-menu">
                     <Link to="/sleeptracker" className='sitebar-button'><MdNightsStay />SleepTracker</Link>
+                    <Link to="/sleeptracker/statistics" className='sitebar-button'><IoStatsChart />Статистика</Link>
                     <Link to="/sleeptracker/settings" className='sitebar-button'><IoSettingsSharp/>Налаштування</Link>
                     <ModalButton buttonName='Додати час'>
                         <SleepRecordForm />
@@ -66,12 +72,6 @@ const Sitebar = () => {
                             </div>
                         </BasicPopover>
                     </div>
-                </div>
-
-                <div className="ham-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
                 </div>
                 </>
             )}
