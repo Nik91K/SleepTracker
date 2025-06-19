@@ -50,3 +50,19 @@ html{
   border-bottom: var(--link-hover-border);
   transition: 0.5s ease;
 }
+
+.sleep-tracker-header{
+  margin-left: 50px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.main-page-top{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
