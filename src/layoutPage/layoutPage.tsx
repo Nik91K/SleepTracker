@@ -1,6 +1,6 @@
 import './layoutPage.css';
-import Header from '../components/Layout/Header/Header'
-import Footer from '../components/Layout/Footer/Footer'
+import Header from '../components/Layout/LayoutPage/Header/Header'
+import Footer from '../components/Layout/LayoutPage/Footer/Footer'
 import { useEffect, useState } from 'react';
 
 const LayoutPage = ({title, children} : {title?:string, children:React.ReactNode}) => {
