@@ -20,11 +20,15 @@ const SLICE_URL = "sleep-record"
 
 export const createSleepRecord = createAsyncThunk (
     'sleep-record/create',
-    async (recordData: { date: string, fellAsleepAt: string, wokeUpAt: string }, { rejectWithValue, getState }) => {
+    async (recordData: { date: string, fellAsleepAt: string, wokeUpAt: string }, { rejectWithValue }) => {
         try {
-            const state:any = getState()
-            const beingData = state.sleepRecord.records as SleepRecordType[]
-            const existingRecord = beingData.find((record: SleepRecordType) => record.date === recordData.date)
+            const checkResponse = await axios.get(`/sleep-record`, {
+                params: {
+                    startDate: recordData.date,
+                    finishDate: recordData.date
+                }
+            })
+            const existingRecord = checkResponse.data[0]
             let response
             if (existingRecord) {
                 response = await axios.put(`/${SLICE_URL}/${existingRecord.id}`, recordData)
@@ -33,7 +37,7 @@ export const createSleepRecord = createAsyncThunk (
             }
             return response.data
         } catch (error: any) {
-            return rejectWithValue(error.response.data)
+            return rejectWithValue(error.response?.data || 'Щось пішло не так')
         }
     }
 )
@@ -64,7 +68,13 @@ const sleepRecordSlice = createSlice({
         })
         .addCase(createSleepRecord.fulfilled, (state, action) => {
             state.loading = false
-            state.records.push(action.payload)
+            const update = action.payload
+            const existingIndex = state.records.findIndex(record => record.id === update.id)
+            if (existingIndex !== -1) {
+                state.records[existingIndex] = update
+            } else {
+                state.records.push(update)
+            }
         })
         .addCase(createSleepRecord.rejected, (state, action) => {
             state.loading = false
