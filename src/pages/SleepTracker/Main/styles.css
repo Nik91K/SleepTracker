@@ -1,0 +1,52 @@
+@media (min-width: 1441px) {
+    .main-page-top{
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .chart-container{
+        padding: 20px;
+        border-radius: 10px;
+        width: 700px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 1440px) {
+    .main-page-top{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .chart-container{
+        width: 700px;
+        height: 400px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+}
+
+@media (max-width: 992px) {
+    .chart-container{
+        width: 600px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .chart-container{
+        width: 200px;
+        height: 100px;
+    }
+}
+
+.chart-container{
+    padding: 20px;
+    border-radius: 10px;
+}
