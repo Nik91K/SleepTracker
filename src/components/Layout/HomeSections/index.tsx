@@ -4,7 +4,7 @@ import './style.css'
 
 type Section = {
     icon: React.ReactNode;
-    valueTop: string;
+    valueTop: React.ReactNode;
     valueBottom: string;
 };
 
@@ -25,8 +25,8 @@ const HomeSections = ({ sections } : HomeSectionsProps) => {
                 <div className={`sleep-tracker-card ${getPositionClass(number)}`} key={number}>
                     <div className="icon-wrapper">{section.icon}</div>
                     <div className="data-wrapper">
-                        <p>{section.valueTop}</p>
-                        <p>{section.valueBottom}</p>
+                        <p className='top-value'>{section.valueTop}</p>
+                        <p className='bottom-value'>{section.valueBottom}</p>
                     </div>
                 </div>
             ))}

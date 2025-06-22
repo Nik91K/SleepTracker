@@ -2,17 +2,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  background-color: #1a202c;
   border-radius: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 600px;
-  margin: 20px auto;
-  color: #e2e8f0;
+  max-width: 550px;
   overflow: hidden;
 }
 
 .sleep-tracker-card {
-  background-color: #1a202c;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -20,6 +16,16 @@
   align-items: center;
   text-align: center;
   min-height: 150px;
+}
+
+.top-value{
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.bottom-value{
+  font-size: 15px;
+  color: #dbdbdb;
 }
 
 .sleep-tracker-card:nth-child(odd) {
@@ -51,8 +57,8 @@
 
 
 .icon-wrapper {
-  width: 40px;
-  font-size: 40px;
+  width: 50px;
+  font-size: 50px;
   color: #63b3ed;
 }
 
