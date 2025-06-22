@@ -22,7 +22,7 @@ function CircularChart({ dataPercentage } : { dataPercentage:number }) {
                     'rgb(255, 165, 0)',
                     'rgba(71, 71, 71, 0.32)',
                 ],
-                borderWidth: 0,
+                borderWidth: 2,
             }]
         }
     }
