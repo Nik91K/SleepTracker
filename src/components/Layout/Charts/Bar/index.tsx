@@ -11,7 +11,7 @@ ChartJS.register(
 );
 
 
-function BarChart({ sleepData, backgroundColor }: { sleepData: number[], backgroundColor: string }) {
+function BarChart({ sleepData, backgroundColor, chartTitle, chartLabel }: { sleepData: number[], backgroundColor: string, chartTitle:string, chartLabel: string }) {
   const labels = ['Понеділок', 'Вівторок', 'Середа', 'Четверг', 'П\'ятниця', 'Субота', ' Неділя'];
   const options = {
     responsive: true,
@@ -21,6 +21,7 @@ function BarChart({ sleepData, backgroundColor }: { sleepData: number[], backgro
       },
       title: {
         display: true,
+        text: chartTitle,
       },
     },
     scales: {
@@ -42,7 +43,7 @@ function BarChart({ sleepData, backgroundColor }: { sleepData: number[], backgro
     labels,
     datasets: [
       {
-        label: 'Години сну',
+        label: chartLabel,
         data: sleepData,
         backgroundColor: backgroundColor,
         barThickness: 30,
