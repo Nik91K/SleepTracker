@@ -12,7 +12,7 @@ ChartJS.register(
   Legend
 );
 
-function LineChart ({ sleepData, backgroundColor }: { sleepData: number[], backgroundColor: string }) {
+function LineChart ({ sleepData, backgroundColor, chartTitle, chartLabel }: { sleepData: number[], backgroundColor: string, chartTitle:string, chartLabel:string }) {
     const labels = ['Понеділок', 'Вівторок', 'Середа', 'Четверг', 'П\'ятниця', 'Субота', ' Неділя'];
     const options = {
         responsive: true,
@@ -22,6 +22,7 @@ function LineChart ({ sleepData, backgroundColor }: { sleepData: number[], backg
         },
         title: {
             display: true,
+            text: chartTitle,
         }},
         scales: {
         x: {
@@ -41,12 +42,12 @@ function LineChart ({ sleepData, backgroundColor }: { sleepData: number[], backg
         labels,
             datasets: [
             {
-                label: 'Якість сну',
+                label: chartLabel,
                 data: sleepData,
                 backgroundColor: backgroundColor,
                 borderColor: backgroundColor,
                 fill: false,
-                tension: 0.3,
+                tension: 0.4,
                 pointRadius: 4,
                 pointHoverRadius: 6
             },
