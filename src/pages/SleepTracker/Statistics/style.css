@@ -1,0 +1,22 @@
+.statistics-page-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.statistics-page-charts{
+    width: 70vw;
+    margin-top: 20px;
+}
+
+.statistics-page-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.statistics-page-date-buttons{
+    display: flex;
+    justify-content: left;
+    gap: 20px;
+}
