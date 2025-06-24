@@ -1,7 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@font-face {
+  font-family: 'Inter';
+  src: url('./fonts//Roboto-VariableFont_wdth\,wght.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 html{
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+
 }
 
 *,
@@ -15,7 +24,7 @@ html{
 }
 
 :root{
-  --background-color: #232323;
+  --background-color: #010618;
   --primary-text-color: #ffffff;
   --link-color: rgb(195, 195, 195);
   --link-hover-color: #ffffff;
@@ -52,17 +61,11 @@ html{
 }
 
 .sleep-tracker-header{
-  margin-left: 50px;
+  margin-left: 60px;
+  margin-top: 10px;
   height: 65px;
   display: flex;
   align-items: center;
   font-size: 26px;
   font-weight: 500;
-}
-
-.main-page-top{
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
 }
