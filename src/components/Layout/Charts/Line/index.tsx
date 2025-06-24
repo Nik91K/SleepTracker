@@ -12,10 +12,11 @@ ChartJS.register(
   Legend
 );
 
-function LineChart ({ sleepData, backgroundColor, chartTitle, chartLabel }: { sleepData: number[], backgroundColor: string, chartTitle:string, chartLabel:string }) {
+function LineChart ({ sleepData, backgroundColor, chartTitle, chartLabel, yValue }: { sleepData: number[], backgroundColor: string, chartTitle:string, chartLabel:string, yValue?: (value: number | string) => string  }) {
     const labels = ['Понеділок', 'Вівторок', 'Середа', 'Четверг', 'П\'ятниця', 'Субота', ' Неділя'];
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
         legend: {
             display: false,
@@ -27,13 +28,17 @@ function LineChart ({ sleepData, backgroundColor, chartTitle, chartLabel }: { sl
         scales: {
         x: {
             grid: {
-            display: false,
+                display: false,
             },
         },
         y: {
             grid: {
-            display: true,
-            color: '#444',
+                display: true,
+            },
+            ticks: {
+                callback: function (value: number | string) {
+                    return yValue ? yValue(value) : value
+                }
             }
         }}
     }

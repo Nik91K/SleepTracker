@@ -5,9 +5,13 @@
     flex-direction: column;
 }
 
-.statistics-page-charts{
+.statistics-page-charts {
     width: 70vw;
+    height: 400px;
     margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .statistics-page-buttons{

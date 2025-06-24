@@ -1,4 +1,4 @@
-import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, scales, Colors} from 'chart.js';
+import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, scales, Colors, Ticks} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
@@ -11,10 +11,11 @@ ChartJS.register(
 );
 
 
-function BarChart({ sleepData, backgroundColor, chartTitle, chartLabel }: { sleepData: number[], backgroundColor: string, chartTitle:string, chartLabel: string }) {
+function BarChart({ sleepData, backgroundColor, chartTitle, chartLabel, yValue }: { sleepData: number[], backgroundColor: string, chartTitle:string, chartLabel: string, yValue?: (value: number | string) => string }) {
   const labels = ['Понеділок', 'Вівторок', 'Середа', 'Четверг', 'П\'ятниця', 'Субота', ' Неділя'];
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
@@ -34,6 +35,11 @@ function BarChart({ sleepData, backgroundColor, chartTitle, chartLabel }: { slee
         grid: {
           display: true,
           color: '#444',
+        },
+        ticks: {
+          callback: function (value: number | string) {
+            return yValue ? yValue(value) : value
+          }
         }
       }
     }

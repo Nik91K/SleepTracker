@@ -77,3 +77,44 @@
   align-items: center;
   margin-right: 10px;
 }
+
+@media (max-width: 768px) {
+  .top-value {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sleep-tracker-container {
+    max-width: 350px;
+  }
+
+  .sleep-tracker-card.top-left,
+  .sleep-tracker-card.top-right {
+    padding-left: 5px;
+  }
+
+  .sleep-tracker-card.bottom-left,
+  .sleep-tracker-card.bottom-right {
+    padding-left: 5px;
+  }
+
+  .sleep-tracker-card {
+    padding: 10px;
+  }
+
+  .icon-wrapper {
+    width: 35px;
+    font-size: 35px;
+  }
+
+  .top-value{
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .bottom-value{
+    font-size: 15px;
+  }
+
+}
