@@ -1,3 +1,4 @@
+import { FaChevronRight } from "react-icons/fa";
 import React, { useState } from 'react'
 import Modal from '../Wndow/index'
 import './style.css'
@@ -7,7 +8,7 @@ export default function ModalButton({children, buttonName} : {children: React.Re
   return (
     <>
       <div className='button-style'>
-        <button onClick={() => setIsOpen(true)}>{buttonName}</button>
+        <button className="modal-button" onClick={() => setIsOpen(true)}><p>{buttonName}</p><FaChevronRight /></button>
 
             <Modal open={isOpen} onClose={() => setIsOpen(false)}>
                 {children}
