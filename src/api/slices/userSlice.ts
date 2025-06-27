@@ -38,13 +38,19 @@ export const updateUserAvatar = createAsyncThunk(
         try {
             const formData = new FormData()
             formData.append('file', file)
+            const response = await axios.patch('/user/avatar', formData, {})
+            return response.data
+        } catch (error: any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
 
-            const response = await axios.patch('/user/avatar', formData, {
-                // headers: {
-                //     'Content-Type': 'multipart/form-data',
-                // },
-            })
-
+export const getUserAvatar = createAsyncThunk(
+    'user/getAvatar',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get('/user/me')
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data)
@@ -80,6 +86,19 @@ const configurationSlice = createSlice ({
             state.loading = false
         })
         .addCase(updateUserAvatar.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload as string
+        })
+
+        .addCase(getUserAvatar.pending, (state) => {
+            state.loading = true
+            state.error = null
+        })
+        .addCase(getUserAvatar.fulfilled, (state, action) => {
+            state.image = action.payload.image
+            state.loading = false
+        })
+        .addCase(getUserAvatar.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload as string
         })
