@@ -8,7 +8,6 @@ import React from 'react'
 import SubmitButton from '../../../components/common/Buttons/SubmitButton'
 import { registerUser } from '../../../api/slices/authSlice'
 import { useAppDispatch } from '../../../api/hooks';
-import ThemeButton from '../../../components/common/Buttons/Theme/index'
 
 const RegisterPage = () => {
     const [tooltip, setError] = React.useState<{ type: 'success' | 'error'; message: string } | null>(null)
