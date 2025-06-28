@@ -7,11 +7,22 @@ import { useEffect } from 'react'
 import React from 'react';
 import { MdNightsStay } from "react-icons/md";
 import { IoSettingsSharp, IoStatsChart } from "react-icons/io5";
+import { useAppDispatch, useAppSelector } from '../../../api/hooks'
+import { getUserAvatar } from '../../../api/slices/userSlice'
+
+
 const Sitebar = () => {
     const [name, setName] = React.useState('')
     const [email, setEmail] = React.useState('')
     const location = useLocation()
     const showSidebar = location.pathname.startsWith('/sleeptracker')
+    const { loading, error, image } = useAppSelector((state) => state.users)
+    const dispatch = useAppDispatch()
+    let imageUrl = image
+    if (image && image.startsWith('/uploads')) {
+        imageUrl = `${import.meta.env.API_URL}${image}`
+    }
+
 
     useEffect(() => {
         const nameStorage = localStorage.getItem('UserName') || 'Користувач'
@@ -38,6 +49,10 @@ const Sitebar = () => {
         }
     }, []);
 
+    useEffect(() => {
+        dispatch(getUserAvatar())
+    }, [dispatch])
+
     if (!showSidebar) {
         return <Outlet />
     }
@@ -63,7 +78,8 @@ const Sitebar = () => {
                         <BasicPopover>
                             <div className="sitebar-about-user">
                                 <div>
-                                    <img src="https://placehold.co/48x48" alt="" className='sitebar-user-img' />
+                                    <p>{loading}</p>
+                                    <img src={imageUrl ? imageUrl : 'https://placehold.co/20x20'} alt="User avatar" className='sitebar-user-img' />
                                 </div>
                                 <div className='sitebar-user-data'>
                                     <p>{name}</p>
