@@ -5,6 +5,7 @@ import BasicPopover from '../../common/Popover';
 import './style.css'
 import { useEffect } from 'react'
 import React from 'react';
+import defaultAvatar from '../../../assets/avatar/default-avatar.jpg'
 import { MdNightsStay } from "react-icons/md";
 import { IoSettingsSharp, IoStatsChart } from "react-icons/io5";
 import { useAppDispatch, useAppSelector } from '../../../api/hooks'
@@ -20,7 +21,7 @@ const Sitebar = () => {
     const dispatch = useAppDispatch()
     let imageUrl = image
     if (image && image.startsWith('/uploads')) {
-        imageUrl = `${import.meta.env.API_URL}${image}`
+        imageUrl = `${import.meta.env.VITE_API_URL}${image}`
     }
 
 
@@ -79,7 +80,7 @@ const Sitebar = () => {
                             <div className="sitebar-about-user">
                                 <div>
                                     <p>{loading}</p>
-                                    <img src={imageUrl ? imageUrl : 'https://placehold.co/20x20'} alt="User avatar" className='sitebar-user-img' />
+                                    <img src={imageUrl ? imageUrl : defaultAvatar} alt="User avatar" className='sitebar-user-img' />
                                 </div>
                                 <div className='sitebar-user-data'>
                                     <p>{name}</p>
