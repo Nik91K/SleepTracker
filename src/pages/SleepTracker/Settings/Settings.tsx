@@ -5,21 +5,22 @@ import ModalButton from '../../../components/common/Modal/Open modal'
 import { FaUser, FaBell } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 import { IoMdSettings } from "react-icons/io";
+import EditProfileModal from '../../../components/Layout/EditProfie'
 import './style.css'
 
 const Settings = () => {
-    console.log("Settings page rendered")
     const name = localStorage.getItem('name') || 'Користувач'
     const email = localStorage.getItem('email') || 'email@example.com'
 
     const personalInfo = [
         { label: name, icon: <FaUser /> },
-        { label: email, icon: <MdEmail /> }
+        { label: email, icon: <MdEmail /> },
+        { label: 'Редагувати профіль', value: <ModalButton buttonName=''><EditProfileModal /></ModalButton>, icon: <IoMdSettings /> }
     ]
 
     const customization = [
         { label: 'Тема', icon: <IoMdSettings /> },
-        { label: 'Сповіщення', value: <ModalButton buttonName='Керувати сповіщеннями'><ReminderForm /></ModalButton>, icon: <FaBell /> }
+        { label: 'Сповіщення', value: <ModalButton buttonName='Більше'><ReminderForm /></ModalButton>, icon: <FaBell /> }
     ]
 
     return (
