@@ -29,7 +29,7 @@ const MainPage = () => {
 
     const hoursToIntegers = (duration: string) => {
         const [hours, minutes] = duration.split(':').map(Number)
-        return parseFloat((hours + minutes / 60).toFixed(3))
+        return parseFloat((hours + minutes / 60).toFixed(1))
     }
 
     const sleepData = efficiency[currentWeek]?.days.map(day => 
@@ -81,7 +81,7 @@ const MainPage = () => {
             <div className='main-page-top'>
                 <HomeSections sections={sectionData} />
                 <div className='chart-container'>
-                    <BarChart sleepData={sleepData} backgroundColor='rgb(255, 165, 0)'/>                    
+                    <BarChart sleepData={sleepData} backgroundColor='#ffa500' chartTitle='Статистика за цей тиждень' chartLabel='Час сну' />
                 </div>
             </div>
         </LayoutPage>

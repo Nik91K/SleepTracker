@@ -23,9 +23,9 @@ const SleepTrackerStatistics = () => {
     }, [dispatch, startDate, endDate])
 
     const sleepQuality = efficiency[currentWeek]?.sleepQuality
-    const allSleepQuality = efficiency.map(week => week.sleepQuality)
+    const allSleepQuality = efficiency.map(efficiency => efficiency.sleepQuality)
     const sleepDuration = validateDuration(efficiency[currentWeek]?.sleepDuration)
-
+    const allSleepDuration = efficiency.map(efficiency => efficiency.sleepQuality)
 
     const handleNextWeek = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
@@ -94,6 +94,7 @@ const SleepTrackerStatistics = () => {
                         backgroundColor='#ffa500'
                         chartTitle={`Якість сну по тижнях:`}
                         chartLabel='Середня якість'
+                        yValue={(value) => `${value}%`}
                         />
                     ) : (
                         <LineChart
@@ -101,6 +102,7 @@ const SleepTrackerStatistics = () => {
                         backgroundColor='#ffa500'
                         chartTitle={`Статистика за ${sleepDate}`}
                         chartLabel='Якість сну'
+                        yValue={(value) => `${value}%`}
                         />
                     )}
                     </div>
@@ -109,10 +111,11 @@ const SleepTrackerStatistics = () => {
                     <h2>Час сну</h2>
                     {showByWeek ? (
                         <BarChart
-                        sleepData={[hoursToIntegers(sleepDuration)]}
+                        sleepData={allSleepDuration}
                         backgroundColor='#ffa500'
                         chartTitle={`Час сну по тижнях`}
                         chartLabel='Середній час сну'
+                        yValue={(value) => `${value}год`}
                         />
                     ) : (
                         <BarChart
@@ -120,6 +123,7 @@ const SleepTrackerStatistics = () => {
                         backgroundColor='#ffa500'
                         chartTitle={`Статистика за ${sleepDate}`}
                         chartLabel='Час сну за день'
+                        yValue={(value) => `${value}год`}
                         />
                     )}
                     </div>
