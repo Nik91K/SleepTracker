@@ -20,19 +20,7 @@ const initialState: NotificationState = {
   error: null,
 }
 
-const SLICE_URL = "/api/v1/notifications/settings"
-
-export const createNotificationSettings = createAsyncThunk(
-  'notification/createSettings',
-  async (userId: string, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(`${SLICE_URL}/${userId}`)
-      return response.data
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data || 'Unknown error')
-    }
-  }
-)
+const SLICE_URL = "notifications/settings"
 
 export const updateNotificationSettings = createAsyncThunk(
   'notification/updateSettings',
@@ -46,25 +34,24 @@ export const updateNotificationSettings = createAsyncThunk(
   }
 )
 
+export const showNotificationSettings = createAsyncThunk(
+  'notification/createSettings',
+  async (userId: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${SLICE_URL}/${userId}`)
+      return response.data
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || 'Unknown error')
+    }
+  }
+)
+
 const notificationSlice = createSlice({
     name: 'notification',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(createNotificationSettings.pending, (state) => {
-            state.loading = true
-            state.error = null
-        })
-        .addCase(createNotificationSettings.fulfilled, (state, action) => {
-            state.loading = false
-            state.data = action.payload
-        })
-        .addCase(createNotificationSettings.rejected, (state, action) => {
-            state.loading = false
-            state.error = action.payload as string
-        })
-
         .addCase(updateNotificationSettings.pending, (state) => {
             state.loading = true
             state.error = null
@@ -76,7 +63,20 @@ const notificationSlice = createSlice({
         .addCase(updateNotificationSettings.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload as string
-        });
+        })
+
+        .addCase(showNotificationSettings.pending, (state) => {
+            state.loading = true
+            state.error = null
+        })
+        .addCase(showNotificationSettings.fulfilled, (state, action) => {
+            state.loading = false
+            state.data = action.payload
+        })
+        .addCase(showNotificationSettings.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload as string
+        })
     }
 })
 
