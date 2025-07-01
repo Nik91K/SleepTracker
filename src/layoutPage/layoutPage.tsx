@@ -14,9 +14,9 @@ const LayoutPage = ({title, children} : {title?:string, children:React.ReactNode
 
     return (
         <div className='layout-page' data-theme={isDark ? 'dark' : 'light'}>
-            <Header isLoggedIn={isLoggedIn} />
+            <Header isLoggedIn={isLoggedIn} pageTitle={title}/>
             <main className='main-container'>
-                <h2 className='layout-h2'>{title}</h2>
+                <h2 className='layout-h2'></h2>
                 <div className="content">
                     {children}
                 </div>
