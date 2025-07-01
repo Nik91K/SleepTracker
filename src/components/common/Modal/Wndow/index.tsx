@@ -11,7 +11,7 @@ export default function Modal({ open, children, onClose } : { open: boolean, chi
     <>
       <div className='overlay-window' onClick={onClose} />
       <div className="modal-window" role="dialog" aria-modal="true">
-        <button onClick={onClose}><IoCloseOutline size={20} /></button>
+        <button className='close-button' onClick={onClose}><IoCloseOutline size={30} /></button>
         {children}
       </div>
     </>,
