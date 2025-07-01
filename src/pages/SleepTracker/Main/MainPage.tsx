@@ -74,9 +74,6 @@ const MainPage = () => {
             {tooltip && (
                 <Tooltip type={tooltip.type} typeText={tooltip.message} close={() => setError(null)}/>
             )} 
-            <div className="main-page sleep-tracker-header">
-                <Greetings />
-            </div>
             {error && <p>Помилка: {error}</p>}
             <div className='main-page-top'>
                 <HomeSections sections={sectionData} />

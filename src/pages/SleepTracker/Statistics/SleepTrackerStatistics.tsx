@@ -59,11 +59,8 @@ const SleepTrackerStatistics = () => {
     )
 
     return (
-        <LayoutPage>
+        <LayoutPage title='Статистика'>
             {error && <p>error</p>}
-            <div className="sleep-tracker-header">
-                <p>Статистика сну</p>
-            </div>
             <div className='statistics-page-buttons'>
                 <div className='statistics-page-date-buttons'>
                     {!showByWeek && (

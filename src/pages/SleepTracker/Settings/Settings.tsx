@@ -24,7 +24,7 @@ const Settings = () => {
     ]
 
     return (
-        <LayoutPage>
+        <LayoutPage title='Налаштування'>
             <div className="sleep-tracker-header">
                 <p>Налаштування</p>
             </div>
