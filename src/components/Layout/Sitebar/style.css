@@ -17,7 +17,7 @@
     transition: .3s ease;
 }
 .off-screen-menu.active {
-    z-index: 1000;
+    z-index: 800;
     left: 0;
 }
 
@@ -27,7 +27,7 @@ nav {
 }
 
 .ham-menu {
-    z-index: 1001;
+    z-index: 801;
     height: 50px;
     width: 40px;
     position: fixed;
