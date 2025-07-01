@@ -17,6 +17,11 @@ const ReminderForm = () => {
         let time = getFormInputValueByName(event.currentTarget, 'time')
         let method: 'email' = 'email'
 
+        if(!time) {
+            setError({ type: 'error', message: 'Незаповнені поля' })
+            return
+        }
+
         dispatch(updateNotificationSettings({ enabled, time, method }))
         .unwrap()
         .then(() => {
@@ -34,8 +39,8 @@ const ReminderForm = () => {
         )}
         <form action="" onSubmit={handleSubmit}>
             <ToggleSwitch checked={enabled} onChange={setEnabled}/>
-            <Input type='text' title='Укажіть час нагадування' name='time'/>
-            <SubmitButton type='submit' text='Надіслати' />
+            <Input type='text' title='Укажіть час нагадування' name='time' disabled={!enabled}/>
+            <SubmitButton type='submit' text='Надіслати' disabled={!enabled}/>
         </form>
         </>
     )
