@@ -1,0 +1,43 @@
+@media (min-width: 768px) {
+    .bottom-nav { 
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background-color: #010618;
+        border-top: 1px solid #01061860;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .nav-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+        color: #dbdbdb;
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .nav-btn svg {
+        font-size: 20px;
+        margin-bottom: 2px;
+    }
+
+    .nav-btn:hover {
+        transition: 0.3s ease;
+        color: #a1a1a1;
+    }
+}
