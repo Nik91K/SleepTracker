@@ -6,6 +6,8 @@ import { FaUser, FaBell } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 import { IoMdSettings } from "react-icons/io";
 import EditProfileModal from '../../../components/Layout/EditProfie'
+import LogoutButton from '../../../components/common/Buttons/Logout'
+import { IoIosLogOut } from "react-icons/io"
 import './style.css'
 
 const Settings = () => {
@@ -15,7 +17,8 @@ const Settings = () => {
     const personalInfo = [
         { label: name, icon: <FaUser /> },
         { label: email, icon: <MdEmail /> },
-        { label: 'Редагувати профіль', value: <ModalButton buttonName=''><EditProfileModal /></ModalButton>, icon: <IoMdSettings /> }
+        { label: 'Редагувати профіль', value: <ModalButton buttonName=''><EditProfileModal /></ModalButton>, icon: <IoMdSettings /> },
+        { value: <LogoutButton />}
     ]
 
     const customization = [

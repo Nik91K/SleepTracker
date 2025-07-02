@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import './style.css'
 
 type DataItem = {
-  label: string
+  label?: string
   value?: ReactNode
   icon?: ReactNode
 }
