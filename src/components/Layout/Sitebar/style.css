@@ -82,7 +82,7 @@ nav {
 
 .sitebar-button:hover {
     transition: 0.3s ease;
-    color: #dbdbdb;
+    color: #a1a1a1;
 }
 
 .sitebar-about-user-container{
@@ -121,4 +121,14 @@ nav {
     font-size: 15px;
     font-family: 'Nunito', sans-serif;
     color: #e6e6e6;
+}
+
+@media (max-width: 768px) {
+    .ham-menu {
+        display: none;
+    }
+
+    .off-screen-menu {
+        display: none;
+    }
 }
