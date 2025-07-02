@@ -11,7 +11,7 @@ import PrivateRoute from './pages/Authentication/PrivateRoute/PrivateRoute.tsx'
 import { Provider } from 'react-redux'
 import { store } from './api/store.ts'
 import Sitebar from './components/Layout/Sitebar/Sitebar.tsx'
-
+import BottomNavigation from './components/Layout/BottomNavigation/index.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
@@ -24,6 +24,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/sleeptracker' element={
           <PrivateRoute>
             <Sitebar />
+            <BottomNavigation />
           </PrivateRoute>
         }>
           <Route index element={<MainPage />} />
