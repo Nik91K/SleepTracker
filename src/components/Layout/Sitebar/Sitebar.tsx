@@ -16,6 +16,7 @@ const Sitebar = () => {
     const [name, setName] = React.useState('')
     const [email, setEmail] = React.useState('')
     const location = useLocation()
+    const currentPath = location.pathname
     const showSidebar = location.pathname.startsWith('/sleeptracker')
     const { loading, error, image } = useAppSelector((state) => state.users)
     const dispatch = useAppDispatch()
@@ -69,9 +70,9 @@ const Sitebar = () => {
                 </div>
 
                 <div className="off-screen-menu">
-                    <Link to="/sleeptracker" className='sitebar-button'><MdNightsStay />SleepTracker</Link>
-                    <Link to="/sleeptracker/statistics" className='sitebar-button'><IoStatsChart />Статистика</Link>
-                    <Link to="/sleeptracker/settings" className='sitebar-button'><IoSettingsSharp/>Налаштування</Link>
+                    <Link to="/sleeptracker" className={`sitebar-button ${currentPath === '/sleeptracker' ? 'active' : ''}`}><MdNightsStay />SleepTracker</Link>
+                    <Link to="/sleeptracker/statistics" className={`sitebar-button ${currentPath === '/sleeptracker/statistics' ? 'active' : ''}`}><IoStatsChart />Статистика</Link>
+                    <Link to="/sleeptracker/settings" className={`sitebar-button ${currentPath === '/sleeptracker/settings' ? 'active' : ''}`}><IoSettingsSharp/>Налаштування</Link>
                     <ModalButton buttonName='Додати час'>
                         <SleepRecordForm />
                     </ModalButton>
