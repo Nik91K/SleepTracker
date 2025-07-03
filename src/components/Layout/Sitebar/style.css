@@ -16,6 +16,7 @@
     left: -450px;
     transition: .3s ease;
 }
+
 .off-screen-menu.active {
     z-index: 800;
     left: 0;
@@ -71,7 +72,7 @@ nav {
     display: flex;
     align-items: center;
     border-radius: 5px;
-    width: 200px;
+    width: 100%;
     padding: 10px;
     margin: 5px 0;
     text-decoration: none;
@@ -83,6 +84,11 @@ nav {
 .sitebar-button:hover {
     transition: 0.3s ease;
     color: #a1a1a1;
+}
+
+.sitebar-button.active {
+    background-color: #ffffff1a;
+    color: white;
 }
 
 .sitebar-about-user-container{
