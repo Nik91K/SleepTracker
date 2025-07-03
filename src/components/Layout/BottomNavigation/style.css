@@ -19,8 +19,9 @@
         z-index: 1000;
     }
 
-    .nav-btn {
+    .navigation-button {
         display: flex;
+        justify-content: center;
         flex-direction: column;
         align-items: center;
         font-size: 12px;
@@ -29,14 +30,23 @@
         border: none;
         outline: none;
         cursor: pointer;
+        padding: 5px;
+        border-radius: 10px;
+        width: 60px;
+        height: 53px;
     }
 
-    .nav-btn svg {
+    .navigation-button.active {
+        background-color: #ffffff1a;
+        color: white;
+    }
+
+    .navigation-button svg {
         font-size: 20px;
         margin-bottom: 2px;
     }
 
-    .nav-btn:hover {
+    .navigation-button:hover {
         transition: 0.3s ease;
         color: #a1a1a1;
     }
