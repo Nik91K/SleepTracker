@@ -44,6 +44,18 @@ export const loginUser = createAsyncThunk (
     } 
 )
 
+export const userData = createAsyncThunk (
+    'auth/data',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response:any = await axios.get(`/${SLICE_URL}/user`)
+            return response.data
+        } catch (error: any) {
+            return rejectWithValue(error.response.data.message || 'Data failed')
+        }
+    }
+)
+
 const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -70,6 +82,19 @@ const authSlice = createSlice({
             state.loading = false;   
         })
         .addCase(loginUser.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload as string
+        })
+
+        .addCase(userData.pending, (state) => {
+            state.loading = true
+            state.error = null
+        })
+        .addCase(userData.fulfilled, (state, action) => {
+            state.loading = false
+            state.user = action.payload
+        })
+        .addCase(userData.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload as string
         })
