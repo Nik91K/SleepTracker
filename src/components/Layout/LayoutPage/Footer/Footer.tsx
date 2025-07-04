@@ -12,10 +12,12 @@ const Footer = () => {
         <footer className="footer">
             <p>
                 Вихідний код:{" "}
-                <a href="https://github.com/Nik91K/SleepTracker" target="_blank" rel="noreferrer">
+                <a href="https://github.com/Nik91K/SleepTracker" target="_blank" rel="noreferrer" className="link">
                 github.com/Nik91K/SleepTracker
                 </a>
             </p>
+            <p><a href="/register" className="link">Реєстрація</a></p>
+            <p><a href="/login" className="link">Логін</a></p>
         </footer>
     )
 }
