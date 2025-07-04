@@ -18,9 +18,9 @@ createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <PublicRoute><Route path='/' element={<App />} /></PublicRoute>
-        <PublicRoute><Route path='/register' element={<RegisterPage />} /></PublicRoute>
-        <PublicRoute><Route path='/login' element={<LoginPage />} /></PublicRoute>
+        <Route path='/' element={<PublicRoute><App /></PublicRoute>} />
+        <Route path='/register' element={<PublicRoute><RegisterPage /></PublicRoute>} />
+        <Route path='/login' element={<PublicRoute><LoginPage /></PublicRoute>} />
         <Route path='/sleeptracker' element={
           <PrivateRoute>
             <Sitebar />
