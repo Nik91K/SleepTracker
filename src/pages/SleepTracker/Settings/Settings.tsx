@@ -8,15 +8,17 @@ import { IoMdSettings } from "react-icons/io";
 import EditProfileModal from '../../../components/Layout/EditProfie'
 import LogoutButton from '../../../components/common/Buttons/Logout'
 import { IoIosLogOut } from "react-icons/io"
+import { useAppSelector } from '../../../api/hooks';
 import './style.css'
 
 const Settings = () => {
     const name = localStorage.getItem('name') || 'Користувач'
     const email = localStorage.getItem('email') || 'email@example.com'
+    const { user } = useAppSelector((state) => state.auth)
 
     const personalInfo = [
-        { label: name, icon: <FaUser /> },
-        { label: email, icon: <MdEmail /> },
+        { label: user?.name || 'Користувач', icon: <FaUser /> },
+        { label: user?.email || 'email@example.com', icon: <MdEmail /> },
         { label: 'Редагувати профіль', value: <ModalButton buttonName=''><EditProfileModal /></ModalButton>, icon: <IoMdSettings /> },
         { value: <LogoutButton />}
     ]

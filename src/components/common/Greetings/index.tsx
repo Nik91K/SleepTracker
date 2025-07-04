@@ -1,9 +1,10 @@
 import React from 'react';
 import './style.css';
+import { useAppSelector } from '../../../api/hooks';
 
 const Greetings = () => {
-    const name = localStorage.getItem('UserName') || 'Користувач'
     const [greetingsText, setGreetingsText] = React.useState('')
+    const { user } = useAppSelector((state) => state.auth)
 
     React.useEffect(() => {
         const randomGreetings = Math.random()
@@ -22,11 +23,9 @@ const Greetings = () => {
         }
     }, [])
 
-
-
     return (
         <div className="greetings">
-            <p className='greetings-username'>{name}</p>
+            <p className='greetings-username'>{user?.name || 'Користувач'}</p>
             <p className="greetings-text">{greetingsText}!</p>
         </div>
     )

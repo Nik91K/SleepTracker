@@ -10,7 +10,7 @@ import { MdNightsStay } from "react-icons/md";
 import { IoSettingsSharp, IoStatsChart } from "react-icons/io5";
 import { useAppDispatch, useAppSelector } from '../../../api/hooks'
 import { getUserAvatar } from '../../../api/slices/userSlice'
-
+import { userData } from '../../../api/slices/authSlice';
 
 const Sitebar = () => {
     const [name, setName] = React.useState('')
@@ -19,19 +19,12 @@ const Sitebar = () => {
     const currentPath = location.pathname
     const showSidebar = location.pathname.startsWith('/sleeptracker')
     const { loading, error, image } = useAppSelector((state) => state.users)
+    const { user } = useAppSelector((state) => state.auth)
     const dispatch = useAppDispatch()
     let imageUrl = image
     if (image && image.startsWith('/uploads')) {
         imageUrl = `${import.meta.env.VITE_API_URL}${image}`
     }
-
-
-    useEffect(() => {
-        const nameStorage = localStorage.getItem('UserName') || 'Користувач'
-        const emailStorage = localStorage.getItem('UserEmail') || 'email@example.com'
-        if (nameStorage) setName(nameStorage)
-        if (emailStorage) setEmail(emailStorage)
-    }, [])
 
     useEffect(() => {
         const hamMenu = document.querySelector(".ham-menu")
@@ -53,6 +46,7 @@ const Sitebar = () => {
 
     useEffect(() => {
         dispatch(getUserAvatar())
+        dispatch(userData())
     }, [dispatch])
 
     if (!showSidebar) {
@@ -84,8 +78,8 @@ const Sitebar = () => {
                                     <img src={imageUrl ? imageUrl : defaultAvatar} alt="User avatar" className='sitebar-user-img' />
                                 </div>
                                 <div className='sitebar-user-data'>
-                                    <p>{name}</p>
-                                    <p>{email}</p>
+                                    <p>{user?.name || 'Користувач'}</p>
+                                    <p>{user?.email || 'email@example.com'}</p>
                                 </div>
                             </div>
                         </BasicPopover>
