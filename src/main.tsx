@@ -7,7 +7,8 @@ import LoginPage from './pages/Authentication/LoginPage/loginPage.tsx'
 import MainPage from './pages/SleepTracker/Main/MainPage.tsx'
 import SleepTrackerStatistics from './pages/SleepTracker/Statistics/SleepTrackerStatistics.tsx'
 import Settings from './pages/SleepTracker/Settings/Settings.tsx'
-import PrivateRoute from './pages/Authentication/PrivateRoute/PrivateRoute.tsx'
+import PrivateRoute from './routes/PrivateRoute.tsx'
+import PublicRoute from './routes/PublicRoute.tsx'
 import { Provider } from 'react-redux'
 import { store } from './api/store.ts'
 import Sitebar from './components/Layout/Sitebar/Sitebar.tsx'
@@ -17,10 +18,9 @@ createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='/register' element={<RegisterPage />} />
-        <Route path='/login' element={<LoginPage />} />
-
+        <PublicRoute><Route path='/' element={<App />} /></PublicRoute>
+        <PublicRoute><Route path='/register' element={<RegisterPage />} /></PublicRoute>
+        <PublicRoute><Route path='/login' element={<LoginPage />} /></PublicRoute>
         <Route path='/sleeptracker' element={
           <PrivateRoute>
             <Sitebar />
