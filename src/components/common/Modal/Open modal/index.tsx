@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Modal from '../Wndow/index'
 import './style.css'
 
-export default function ModalButton({children, buttonName} : {children: React.ReactNode, buttonName: string}) {
+export default function ModalButton({children, buttonName} : {children: React.ReactNode, buttonName?: string}) {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>

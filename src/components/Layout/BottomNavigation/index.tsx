@@ -2,6 +2,9 @@ import './style.css'
 import { FaHome, FaCog } from 'react-icons/fa'
 import { FaChartSimple } from "react-icons/fa6";
 import { Link, useLocation } from 'react-router'
+import SleepRecordForm from '../../common/Forms/SleepRecord';
+import ModalButton from '../../common/Modal/Open modal';
+import { IoTime } from "react-icons/io5";
 
 const BottomNavigation = () => {
     const currentPath = useLocation().pathname
@@ -20,6 +23,9 @@ const BottomNavigation = () => {
                 <FaCog />
                 <span>Settings</span>
             </Link>
+            <ModalButton>
+                <SleepRecordForm />
+            </ModalButton>
         </div>
     )
 }
