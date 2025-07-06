@@ -32,8 +32,6 @@ const EditProfileModal = () => {
 
     return (
         <form className="edit-profile-form" onSubmit={handleSubmit}>
-                <Input type='text' name='name' title='Ім`я'/>
-                <Input type='password' name='password' title='Пароль'/>
                 <Input type='file' title='Аватар' name='avatar'/>
                 <SubmitButton type='submit' text='Зберегти'/>
         </form>
