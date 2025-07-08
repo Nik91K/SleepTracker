@@ -1,0 +1,28 @@
+.top-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.top-block-name{
+    color: #ffffffbf;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 40px;
+}
+
+.top-block-text{
+    margin-top: 8px;
+    margin-bottom: 16px;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 64px;
+}
+
+.paragraph-header{
+    margin-bottom: 32px;
+    font-size: 24px;
+    line-height: 32px;
+}
