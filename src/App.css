@@ -1,8 +1,30 @@
-.app {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    margin-top: 20px;
+.main-page-top-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 40px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.main-page-img {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  flex: 1 1 40%;
+}
+
+@media (max-width: 768px) {
+  .main-page-top-block {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .main-page-img {
+    max-width: 100%;
+  }
 }
