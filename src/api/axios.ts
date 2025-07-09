@@ -1,31 +1,34 @@
-import axios from "axios"
+import axios from 'axios';
 
-const instance = axios.create({
-    baseURL: `${import.meta.env.VITE_API_URL}/api/v1`,
-    withCredentials: true,
+const api = axios.create({
+  baseURL: `${import.meta.env.VITE_API_URL}/api/v1`,
+  withCredentials: true,
 })
 
-instance.interceptors.response.use(
-    (response) => response,
-    async (error) => {
+let isRefreshing = false
+
+api.interceptors.response.use (
+    res => res,
+    async error => {
         const originalRequest = error.config
         if (error.response?.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true
-            try {
-                const response = await axios.post(`${import.meta.env.VITE_API_URL}api/v1/auth/refresh`,
-                    {},
-                    { withCredentials: true }
-                )
-                const newToken = response.data.accessToken
-                instance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
-                originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
-                return instance(originalRequest)
-            } catch (error) {
-                console.log('Refresh error', error)
+            if (!isRefreshing){
+                isRefreshing = true
+                try {
+                    const response = await api.get('/auth/refresh', { withCredentials: true })
+                    isRefreshing = false
+                    api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`
+                    return api(originalRequest)
+                } catch (refreshError) {
+                    isRefreshing = false
+                    return Promise.reject(refreshError)
+                }
             }
+            return Promise.reject(error)
         }
         return Promise.reject(error)
     }
 )
 
-export default instance
+export default api
