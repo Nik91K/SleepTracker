@@ -1,19 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from '../axios';
+import api from '../axios';
 import type { UserType } from "../../types/userTypes";
 
 interface TypeState {
     user: UserType | null
     loading: boolean
     error: string | null
-    token: string | null
 }
 
 const initialState: TypeState = {
     user: null,
     loading: false,
     error: null,
-    token: localStorage.getItem('token') || null,
 }
 
 const SLICE_URL = "auth"
@@ -22,8 +20,7 @@ export const registerUser = createAsyncThunk (
     'auth/register',
     async (userData: { email:string, password:string, name:string, theme:string }, { rejectWithValue }) => {
         try {
-            const response:any = await axios.post(`/${SLICE_URL}/register`, userData)
-            localStorage.setItem('token', response.data.accessToken)
+            const response:any = await api.post(`/${SLICE_URL}/register`, userData)
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data)
@@ -35,8 +32,7 @@ export const loginUser = createAsyncThunk (
     'auth/login',
     async (userData: { email:string, password:string }, { rejectWithValue }) => {
         try {
-            const response:any = await axios.post(`/${SLICE_URL}/login`, userData)
-            localStorage.setItem('token', response.data.accessToken)
+            const response:any = await api.post(`/${SLICE_URL}/login`, userData)
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data.message || "Login failed")
@@ -48,7 +44,7 @@ export const userData = createAsyncThunk (
     'auth/data',
     async (_, { rejectWithValue }) => {
         try {
-            const response:any = await axios.get(`/${SLICE_URL}/user`)
+            const response:any = await api.get(`/${SLICE_URL}/user`)
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data.message || 'Data failed')

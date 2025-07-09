@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from '../axios';
+import api from '../axios';
 import type { WeekSleepEfficiency } from '../../types/weekSleepEfficiencyType'
 
 interface SleepEfficiencyState {
@@ -20,7 +20,7 @@ export const showSleepRecordEfficiency = createAsyncThunk (
     'sleep-record/showEfficiency',
     async ({ startDate, endDate }: { startDate: string; endDate: string }, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`/${SLICE_URL}`, {
+            const response = await api.post(`/${SLICE_URL}`, {
                     startDate,
                     endDate
             })

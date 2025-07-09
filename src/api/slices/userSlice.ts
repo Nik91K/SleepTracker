@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from '../axios'
+import api from '../axios'
 
 interface TypeState {
     theme: string | null;
@@ -23,7 +23,7 @@ export const updateUserTheme = createAsyncThunk (
   'user/updateTheme',
   async (theme: string, { rejectWithValue }) => {
     try {
-      const response = await axios.patch('/user/theme', { theme })
+      const response = await api.patch('/user/theme', { theme })
       return response.data
     } catch (error: any) {
       return rejectWithValue(error.response.data)
@@ -37,7 +37,7 @@ export const updateUserAvatar = createAsyncThunk(
         try {
             const formData = new FormData()
             formData.append('file', file)
-            const response = await axios.patch(`/${SLICE_URL}/avatar`, formData, {})
+            const response = await api.patch(`/${SLICE_URL}/avatar`, formData, {})
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data)
@@ -49,7 +49,7 @@ export const getUserAvatar = createAsyncThunk(
     'user/getAvatar',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`/${SLICE_URL}/me`)
+            const response = await api.get(`/${SLICE_URL}/me`)
             return response.data
         } catch (error: any) {
             return rejectWithValue(error.response.data)

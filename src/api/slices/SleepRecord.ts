@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from '../axios';
+import api from '../axios';
 import type { SleepRecordType } from "../../types/sleepRecordTypes";
 
 interface SleepRecordState {
@@ -22,7 +22,7 @@ export const createSleepRecord = createAsyncThunk (
     'sleep-record/create',
     async (recordData: { date: string, fellAsleepAt: string, wokeUpAt: string }, { rejectWithValue }) => {
         try {
-            const checkResponse = await axios.get(`/sleep-record`, {
+            const checkResponse = await api.get(`/sleep-record`, {
                 params: {
                     startDate: recordData.date,
                     finishDate: recordData.date
@@ -31,9 +31,9 @@ export const createSleepRecord = createAsyncThunk (
             const existingRecord = checkResponse.data[0]
             let response
             if (existingRecord) {
-                response = await axios.put(`/${SLICE_URL}/${existingRecord.id}`, recordData)
+                response = await api.put(`/${SLICE_URL}/${existingRecord.id}`, recordData)
             } else {
-                response = await axios.post(`/${SLICE_URL}`, recordData)
+                response = await api.post(`/${SLICE_URL}`, recordData)
             }
             return response.data
         } catch (error: any) {
@@ -46,7 +46,7 @@ export const showSleepRecord = createAsyncThunk (
     'sleep-record/show',
     async ({ startDate, finishDate }: { startDate: string; finishDate: string }, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`/${SLICE_URL}`, {
+            const response = await api.get(`/${SLICE_URL}`, {
                 params: { startDate, finishDate }
             })
             return response.data as SleepRecordType[]

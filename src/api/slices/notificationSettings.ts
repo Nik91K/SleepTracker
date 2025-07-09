@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-import axios from '../axios'
+import api from '../axios'
 
 
 interface NotificationSettings {
@@ -26,7 +26,7 @@ export const updateNotificationSettings = createAsyncThunk(
   'notification/updateSettings',
   async (settings: NotificationSettings, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(SLICE_URL, settings)
+      const response = await api.patch(SLICE_URL, settings)
       return response.data
     } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Unknown error')
@@ -38,7 +38,7 @@ export const showNotificationSettings = createAsyncThunk(
   'notification/createSettings',
   async (userId: string, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${SLICE_URL}/${userId}`)
+      const response = await api.get(`${SLICE_URL}/${userId}`)
       return response.data
     } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Unknown error')
