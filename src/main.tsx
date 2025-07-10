@@ -13,10 +13,12 @@ import { Provider } from 'react-redux'
 import { store } from './api/store.ts'
 import Sitebar from './components/Layout/Sitebar/Sitebar.tsx'
 import BottomNavigation from './components/Layout/BottomNavigation/index.tsx'
+import TokenLoader from './api/TokenLoader.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <BrowserRouter>
+      <TokenLoader>
       <Routes>
         <Route path='/' element={<PublicRoute><App /></PublicRoute>} />
         <Route path='/register' element={<PublicRoute><RegisterPage /></PublicRoute>} />
@@ -32,6 +34,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='statistics' element={<SleepTrackerStatistics />}/>
         </Route>
       </Routes>
+      </TokenLoader>
     </BrowserRouter>
   </Provider>
 )
