@@ -52,6 +52,19 @@ export const userData = createAsyncThunk (
     }
 )
 
+export const refreshToken = createAsyncThunk(
+    'auth/refresh',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response:any = await api.post(`/${SLICE_URL}/refresh`)
+            api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`
+            return response.data.user
+        } catch (error: any) {
+            return rejectWithValue(error.response.data.message || 'Refresh failed')
+        }
+    }
+)
+
 const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -75,7 +88,10 @@ const authSlice = createSlice({
             state.error = null;
         })
         .addCase(loginUser.fulfilled, (state, action) => {
-            state.loading = false;   
+            state.loading = false;
+            const { accessToken, user } = action.payload;
+            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+            state.user = user;
         })
         .addCase(loginUser.rejected, (state, action) => {
             state.loading = false;
@@ -93,6 +109,20 @@ const authSlice = createSlice({
         .addCase(userData.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload as string
+        })
+
+        .addCase(refreshToken.pending, (state) => {
+            state.loading = true
+            state.error = null
+        })
+        .addCase(refreshToken.fulfilled, (state, action) => {
+            state.loading = false
+            state.user = action.payload
+        })
+        .addCase(refreshToken.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload as string
+            state.user = null
         })
     }
 })
