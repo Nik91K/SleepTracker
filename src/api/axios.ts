@@ -16,9 +16,11 @@ api.interceptors.response.use (
             if (!isRefreshing){
                 isRefreshing = true
                 try {
-                    const response = await api.get('/auth/refresh', { withCredentials: true })
+                    const response = await api.post('/auth/refresh', null, { withCredentials: true })
                     isRefreshing = false
-                    api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`
+                    const newAccessToken = response.data.accessToken
+                    api.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
+                    originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
                     return api(originalRequest)
                 } catch (refreshError) {
                     isRefreshing = false
