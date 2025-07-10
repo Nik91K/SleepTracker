@@ -6,14 +6,12 @@ interface SleepRecordState {
     records: SleepRecordType[];
     loading: boolean;
     error: string | null;
-    token: string | null;
 }
 
 const initialState: SleepRecordState = {
     records: [],
     loading: false,
     error: null,
-    token: localStorage.getItem('token') || null,
 }
 
 const SLICE_URL = "sleep-record"

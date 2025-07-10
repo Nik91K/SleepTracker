@@ -6,7 +6,6 @@ interface TypeState {
     image: string | null;
     loading: boolean;
     error: string | null;
-    token: string | null;
 }
 
 const initialState: TypeState = {
@@ -14,7 +13,6 @@ const initialState: TypeState = {
     image: null,
     loading: false,
     error: null,
-    token: localStorage.getItem('token') || null,
 }
 
 const SLICE_URL = "user"
