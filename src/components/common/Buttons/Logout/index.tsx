@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router'
 const LogoutButton = () => {
     const send = useNavigate()
     const logout = () => {
-        localStorage.removeItem('token')
         localStorage.removeItem('UserName')
         localStorage.removeItem('UserEmail')
         send('/')
