@@ -1,10 +1,12 @@
 import { Navigate } from 'react-router-dom';
 import type { JSX } from 'react';
+import { useSelector } from "react-redux";
+import type { RootState } from '../api/store';
 
 const PublicRoute = ({ children }: { children: JSX.Element }) => {
-  const token = localStorage.getItem("token");
+  const { user } = useSelector((state: RootState) => state.auth)
 
-  if (token) {
+  if (user) {
     return <Navigate to="/sleeptracker" replace />
   }
 
